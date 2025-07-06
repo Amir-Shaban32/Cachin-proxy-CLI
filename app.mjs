@@ -4,16 +4,18 @@ import { start, clearCache, listCache } from './proxy.mjs';
 
 yargs(hideBin(process.argv))
   .scriptName('proxy-cli')
-  .command('start [port] [origin]',
+  .command('start',
     'Start the caching proxy server',
     (yargs) => {
       return yargs
-        .positional('port', {
+        .option('port', {
+          alias: 'p',
           description: 'Port number',
           type: 'number',
           default: 3000
         })
-        .positional('origin', {
+        .option('origin', {
+          alias: 'o',
           description: 'Origin URL',
           type: 'string',
           default: 'https://dummyjson.com'
@@ -21,6 +23,7 @@ yargs(hideBin(process.argv))
     },
     (argv) => {
       const { port, origin } = argv;
+      console.log(`Starting proxy on port ${port} for origin ${origin}`);
       start(port, origin);
     }
   )

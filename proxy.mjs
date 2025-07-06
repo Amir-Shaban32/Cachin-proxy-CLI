@@ -8,7 +8,8 @@ export const start = (port, origin) => {
   cache = new NodeCache({ stdTTL: 300 }); 
   const app = express();
   
-  app.get('*', async (req, res) => {
+  // Use middleware instead of route pattern
+  app.use(async (req, res, next) => {
     try {
       const url = `${origin.replace(/\/+$/, '')}${req.originalUrl}`;
       const cached = cache.get(url);
@@ -23,7 +24,7 @@ export const start = (port, origin) => {
         timeout: 10000 
       });
       
-        cache.set(url, {
+      cache.set(url, {
         status: response.status,
         headers: response.headers,
         data: response.data
