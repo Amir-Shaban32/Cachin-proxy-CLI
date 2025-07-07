@@ -14,7 +14,7 @@ A lightweight, high-performance caching proxy server built with Node.js that spe
 ## 📦 Installation
 
 ```bash
-git clone git@github.com:Amir-Shaban32/Cachin-proxy-CLI.git
+git clone git@github.com:Amir-Shaban32/Caching-proxy-CLI.git
 # Install dependencies
 npm install node-cache express axios yargs
 ```
